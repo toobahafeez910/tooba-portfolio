@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tooba Hafeez Khan | Pharmaceutical Researcher</title>
+  <style>
+    :root {
+      --navy: #0a1628;
+      --navy-mid: #112244;
+      --cyan: #00d4ff;
+      --cyan-soft: #00aacc;
+      --white: #ffffff;
+      --light: #f0f6ff;
+      --glass: rgba(255,255,255,0.08);
+      --glass-border: rgba(0,212,255,0.2);
+      --shadow: 0 8px 32px rgba(0,0,0,0.18);
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: #f8faff;
+      color: var(--navy);
+      overflow-x: hidden;
+    }
+    /* NAV */
+    nav {
+      position: fixed; top:0; left:0; right:0; z-index:1000;
+      background: rgba(10,22,40,0.95);
+      backdrop-filter: blur(16px);
+      padding: 1rem 2rem;
+      display: flex; align-items:center; justify-content:space-between;
+      border-bottom: 1px solid var(--glass-border);
+    }
+    .nav-logo {
+      color: var(--cyan); font-size:1.1rem; font-weight:700; letter-spacing:1px;
+    }
+    .nav-links { display:flex; gap:2rem; list-style:none; }
+    .nav-links a {
+      color: rgba(255,255,255,0.8); text-decoration:none;
+      font-size:0.9rem; letter-spacing:0.5px; transition:color 0.3s;
+    }
+    .nav-links a:hover { color: var(--cyan); }
+    /* HERO */
+    #hero {
+      min-height:100vh;
+      background: linear-gradient(135deg, #0a1628 0%, #0d2044 40%, #0a2a4a 70%, #061830 100%);
+      display:flex; align-items:center; justify-content:center;
+      position:relative; overflow:hidden; padding: 6rem 2rem 3rem;
+    }
+    #canvas-bg {
+      position:absolute; top:0; left:0; width:100%; height:100%; z-index:0;
+    }
+    .hero-content {
+      position:relative; z-index:2; text-align:center; max-width:800px;
+    }
+    .hero-badge {
+      display:inline-block; padding:0.4rem 1.2rem;
+      border:1px solid var(--cyan); border-radius:999px;
+      color:var(--cyan); font-size:0.8rem; letter-spacing:2px;
+      text-transform:uppercase; margin-bottom:1.5rem;
+      background: rgba(0,212,255,0.08);
+    }
+    .hero-name {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight:800; color:#fff; line-height:1.1;
+      background: linear-gradient(135deg, #fff 0%, var(--cyan) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color:transparent;
+      margin-bottom:1rem;
+    }
+    .hero-title {
+      font-size:1.1rem; color:rgba(255,255,255,0.7);
+      letter-spacing:0.5px; margin-bottom:1.5rem;
+    }
+    .hero-headline {
+      font-size:1.25rem; color:var(--cyan);
+      font-style:italic; margin-bottom:1.5rem; line-height:1.6;
+    }
+    .hero-intro {
+      font-size:1rem; color:rgba(255,255,255,0.65);
+      line-height:1.8; max-width:600px; margin:0 auto 2.5rem;
+    }
+    .hero-btns { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; }
+    .btn-primary {
+      padding:0.8rem 2rem; background:var(--cyan);
+      color:var(--navy); border:none; border-radius:8px;
+      font-weight:700; cursor:pointer; font-size:0.95rem;
+      transition: all 0.3s; text-decoration:none; display:inline-block;
+    }
+    .btn-primary:hover { background:#fff; transform:translateY(-2px); box-shadow:0 8px 24px rgba(0,212,255,0.4); }
+    .btn-outline {
+      padding:0.8rem 2rem; background:transparent;
+      color:var(--cyan); border:1.5px solid var(--cyan);
+      border-radius:8px; font-weight:600; cursor:pointer;
+      font-size:0.95rem; transition:all 0.3s;
+      text-decoration:none; display:inline-block;
+    }
+    .btn-outline:hover { background:rgba(0,212,255,0.1); transform:translateY(-2px); }
+    /* SECTIONS */
+    section { padding: 5rem 2rem; }
+    .container { max-width:1100px; margin:0 auto; }
+    .section-label {
+      font-size:0.8rem; letter-spacing:3px; text-transform:uppercase;
+      color:var(--cyan); margin-bottom:0.75rem; font-weight:600;
+    }
+    .section-title {
+      font-size:clamp(1.8rem, 4vw, 2.8rem);
+      font-weight:800; color:var(--navy); margin-bottom:1rem;
+    }
+    .section-divider {
+      width:60px; height:3px;
+      background:linear-gradient(90deg,var(--cyan),transparent);
+      margin-bottom:2.5rem;
+    }
+    /* ABOUT */
+    #about { background:#fff; }
+    .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:3rem; align-items:center; }
+    .about-text p { font-size:1.05rem; line-height:1.9; color:#334; margin-bottom:1rem; }
+    .about-visual {
+      background: linear-gradient(135deg, var(--navy) 0%, #0d3060 100%);
+      border-radius:20px; padding:2.5rem;
+      border:1px solid var(--glass-border);
+      display:flex; flex-direction:column; gap:1rem;
+    }
+    .stat-item {
+      display:flex; align-items:center; gap:1rem;
+      padding:1rem; background:rgba(0,212,255,0.08);
+      border-radius:12px; border:1px solid rgba(0,212,255,0.15);
+    }
+    .stat-icon { font-size:1.8rem; }
+    .stat-label { color:rgba(255,255,255,0.6); font-size:0.85rem; }
+    .stat-value { color:#fff; font-weight:700; font-size:1rem; }
+    /* RESEARCH INTERESTS */
+    #interests { background: linear-gradient(180deg,#f0f6ff,#fff); }
+    .interests-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:1.5rem; }
+    .interest-card {
+      background:#fff; border:1px solid #e0ecff;
+      border-radius:16px; padding:1.5rem;
+      transition:all 0.3s; cursor:default;
+      position:relative; overflow:hidden;
+    }
+    .interest-card::before {
+      content:''; position:absolute; top:0; left:0; right:0; height:3px;
+      background:linear-gradient(90deg,var(--cyan),#0066ff);
+      transform:scaleX(0); transform-origin:left; transition:transform 0.3s;
+    }
+    .interest-card:hover { transform:translateY(-6px); box-shadow:0 16px 40px rgba(0,100,200,0.12); border-color:var(--cyan); }
+    .interest-card:hover::before { transform:scaleX(1); }
+    .interest-icon { font-size:2rem; margin-bottom:0.75rem; }
+    .interest-card h3 { font-size:0.95rem; font-weight:700; color:var(--navy); }
+    /* PROJECTS */
+    #projects { background:#fff; }
+    .projects-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:2rem; }
+    .project-card {
+      background: linear-gradient(135deg,#f8fbff,#fff);
+      border:1px solid #ddeeff;
+      border-radius:20px; padding:2rem;
+      transition:all 0.3s; position:relative; overflow:hidden;
+    }
+    .project-card::after {
+      content:''; position:absolute; inset:0;
+      background:linear-gradient(135deg,rgba(0,212,255,0.04),transparent);
+      opacity:0; transition:opacity 0.3s;
+    }
+    .project-card:hover { transform:translateY(-8px); box-shadow:0 20px 50px rgba(0,100,200,0.15); border-color:var(--cyan); }
+    .project-card:hover::after { opacity:1; }
+    .project-icon { font-size:2.5rem; margin-bottom:1rem; }
+    .project-card h3 { font-size:1.1rem; font-weight:800; color:var(--navy); margin-bottom:0.75rem; }
+    .project-card p { font-size:0.95rem; color:#556; line-height:1.7; margin-bottom:1.5rem; }
+    .project-tags { display:flex; flex-wrap:wrap; gap:0.5rem; margin-bottom:1.5rem; }
+    .tag {
+      padding:0.3rem 0.8rem; background:rgba(0,100,200,0.08);
+      color:#0066cc; border-radius:999px; font-size:0.78rem; font-weight:600;
+    }
+    .btn-read {
+      display:inline-flex; align-items:center; gap:0.5rem;
+      color:var(--cyan-soft); font-weight:700; font-size:0.9rem;
+      text-decoration:none; transition:gap 0.3s;
+    }
+    .btn-read:hover { gap:1rem; }
+    /* LAB SKILLS */
+    #labskills { background:linear-gradient(180deg,#fff,#f0f6ff); }
+    .skills-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); gap:1.5rem; }
+    .skill-card {
+      background:#fff; border-radius:16px; padding:1.5rem;
+      border:1px solid #e0ecff; text-align:center;
+      transition:all 0.3s;
+    }
+    .skill-card:hover { transform:translateY(-5px); box-shadow:0 12px 30px rgba(0,100,200,0.12); border-color:var(--cyan); }
+    .skill-card .s-icon { font-size:2rem; margin-bottom:0.75rem; }
+    .skill-card h4 { font-size:0.88rem; font-weight:700; color:var(--navy); line-height:1.4; }
+    /* TECH SKILLS */
+    #techskills { background:#fff; }
+    .tech-bars { display:flex; flex-direction:column; gap:1.2rem; max-width:700px; }
+    .bar-item label { display:flex; justify-content:space-between; font-size:0.95rem; font-weight:600; color:var(--navy); margin-bottom:0.4rem; }
+    .bar-track {
+      height:10px; background:#e8f0ff; border-radius:999px; overflow:hidden;
+    }
+    .bar-fill {
+      height:100%; border-radius:999px;
+      background:linear-gradient(90deg,var(--cyan),#0066ff);
+      width:0; transition:width 1.2s ease;
+    }
+    /* EDUCATION */
+    #education { background:linear-gradient(180deg,#f0f6ff,#fff); }
+    .timeline { position:relative; padding-left:2.5rem; }
+    .timeline::before {
+      content:''; position:absolute; left:0.75rem; top:0; bottom:0;
+      width:2px; background:linear-gradient(180deg,var(--cyan),#0066ff);
+    }
+    .timeline-item { position:relative; margin-bottom:2.5rem; }
+    .timeline-dot {
+      position:absolute; left:-2.25rem; top:0.4rem;
+      width:16px; height:16px; border-radius:50%;
+      background:var(--cyan); border:3px solid #fff;
+      box-shadow:0 0 0 3px var(--cyan);
+    }
+    .timeline-card {
+      background:#fff; border:1px solid #ddeeff;
+      border-radius:16px; padding:1.5rem 2rem;
+      transition:all 0.3s;
+    }
+    .timeline-card:hover { box-shadow:0 8px 24px rgba(0,100,200,0.12); border-color:var(--cyan); }
+    .timeline-card .year {
+      font-size:0.8rem; font-weight:700; color:var(--cyan);
+      letter-spacing:1px; text-transform:uppercase; margin-bottom:0.4rem;
+    }
+    .timeline-card h3 { font-size:1.15rem; font-weight:800; color:var(--navy); margin-bottom:0.5rem; }
+    .timeline-card p { font-size:0.9rem; color:#556; line-height:1.6; }
+    .timeline-card ul { list-style:none; display:flex; flex-wrap:wrap; gap:0.5rem; margin-top:0.75rem; }
+    .timeline-card ul li {
+      padding:0.3rem 0.8rem; background:rgba(0,100,200,0.07);
+      color:#0066cc; border-radius:999px; font-size:0.8rem; font-weight:600;
+    }
+    /* PHILOSOPHY */
+    #philosophy {
+      background:linear-gradient(135deg,#0a1628,#0d2a50);
+      text-align:center; padding:4rem 2rem;
+    }
+    .quote-mark { font-size:5rem; color:var(--cyan); opacity:0.3; line-height:0.5; }
+    .philosophy-quote {
+      font-size:clamp(1.1rem,2.5vw,1.5rem);
+      color:#fff; font-style:italic; line-height:1.7;
+      max-width:700px; margin:1rem auto;
+    }
+    .quote-author { color:var(--cyan); font-weight:700; margin-top:1rem; }
+    /* COLLABORATE */
+    #collaborate { background:#f8faff; text-align:center; }
+    .collab-opportunities {
+      display:flex; flex-wrap:wrap; justify-content:center; gap:0.75rem; margin:1.5rem auto 2rem;
+    }
+    .collab-pill {
+      padding:0.5rem 1.2rem; background:#fff;
+      border:1px solid #c0d8ff; border-radius:999px;
+      font-size:0.9rem; color:var(--navy); font-weight:500;
+      transition:all 0.3s;
+    }
+    .collab-pill:hover { background:var(--navy); color:#fff; border-color:var(--navy); }
+    .collab-intro { max-width:700px; margin:0 auto 2rem; font-size:1rem; color:#445; line-height:1.8; }
+    /* CONTACT */
+    #contact {
+      background:linear-gradient(135deg,var(--navy),#0d2a50);
+      color:#fff;
+    }
+    .contact-grid { display:grid; grid-template-columns:1fr 1fr; gap:3rem; }
+    .contact-info h2 { color:#fff; }
+    .contact-info .section-label { color:var(--cyan); }
+    .contact-links { display:flex; flex-direction:column; gap:1rem; margin-top:1.5rem; }
+    .contact-link {
+      display:flex; align-items:center; gap:1rem;
+      padding:1rem 1.5rem;
+      background:rgba(255,255,255,0.06);
+      border:1px solid rgba(0,212,255,0.15);
+      border-radius:12px; text-decoration:none;
+      color:rgba(255,255,255,0.85); transition:all 0.3s;
+    }
+    .contact-link:hover { background:rgba(0,212,255,0.1); border-color:var(--cyan); color:#fff; }
+    .c-icon { font-size:1.4rem; }
+    .contact-form { display:flex; flex-direction:column; gap:1rem; }
+    .contact-form input,
+    .contact-form textarea {
+      padding:0.9rem 1.2rem;
+      background:rgba(255,255,255,0.07);
+      border:1px solid rgba(0,212,255,0.2);
+      border-radius:10px; color:#fff; font-size:0.95rem;
+      outline:none; transition:border-color 0.3s;
+    }
+    .contact-form input::placeholder,
+    .contact-form textarea::placeholder { color:rgba(255,255,255,0.4); }
+    .contact-form input:focus,
+    .contact-form textarea:focus { border-color:var(--cyan); }
+    .contact-form textarea { resize:vertical; min-height:130px; }
+    /* FOOTER */
+    footer {
+      background:#060e1c; color:rgba(255,255,255,0.5);
+      text-align:center; padding:2rem;
+      border-top:1px solid rgba(0,212,255,0.1);
+    }
+    footer strong { color:var(--cyan); }
+    /* FADE IN */
+    .fade-up {
+      opacity:0; transform:translateY(30px);
+      transition:opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-up.visible { opacity:1; transform:translateY(0); }
+    /* RESPONSIVE */
+    @media(max-width:768px) {
+      .about-grid, .contact-grid { grid-template-columns:1fr; }
+      .nav-links { display:none; }
+      .hero-btns { flex-direction:column; align-items:center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">THK</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#interests">Research</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#labskills">Skills</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#collaborate">Collaborate</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <canvas id="canvas-bg"></canvas>
+  <div class="hero-content">
+    <div class="hero-badge">Pharmaceutical Researcher · Pakistan</div>
+    <h1 class="hero-name">Tooba Hafeez Khan</h1>
+    <p class="hero-title">M.Phil. Biochemistry Candidate | Chemist | Pharmaceutical Research Enthusiast</p>
+    <p class="hero-headline">Developing innovative liposomal drug delivery systems using natural phospholipids to advance targeted cancer therapeutics.</p>
+    <p class="hero-intro">Passionate about pharmaceutical sciences, biochemistry, nanomedicine, and targeted drug delivery. Dedicated to developing natural lipid-based formulations that improve the effectiveness and safety of therapeutic compounds.</p>
+    <div class="hero-btns">
+      <a href="#projects" class="btn-primary">Explore My Research</a>
+      <a href="dosc/tooba_cirriculum vitae.docx2.docxpdf" download class="btn">
+      <a href="#contact" class="btn-outline">Contact Me</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid fade-up">
+      <div class="about-text">
+        <div class="section-label">About Me</div>
+        <h2 class="section-title">Bridging Chemistry & Healthcare</h2>
+        <div class="section-divider"></div>
+        <p>I am a Chemistry graduate and an M.Phil. Biochemistry candidate with a strong passion for pharmaceutical sciences, nanomedicine, and advanced drug delivery systems.</p>
+        <p>My research focuses on developing liposomal formulations using naturally derived phospholipids, particularly egg yolk lecithin, to enhance the stability, bioavailability, and therapeutic performance of anticancer compounds.</p>
+        <p>My work includes natural phospholipid extraction, liposome formulation, characterization, scientific literature review, and pharmaceutical formulation research. I am committed to contributing to innovative biomedical research that bridges chemistry and healthcare through advanced drug delivery technologies.</p>
+      </div>
+      <div class="about-visual">
+        <div class="stat-item">
+          <span class="stat-icon">🧪</span>
+          <div><div class="stat-label">Current Status</div><div class="stat-value">M.Phil. Biochemistry Candidate</div></div>
+        </div>
+        <div class="stat-item">
+          <span class="stat-icon">🔬</span>
+          <div><div class="stat-label">Research Focus</div><div class="stat-value">Liposomal Drug Delivery</div></div>
+        </div>
+        <div class="stat-item">
+          <span class="stat-icon">🌿</span>
+          <div><div class="stat-label">Specialization</div><div class="stat-value">Natural Phospholipids</div></div>
+        </div>
+        <div class="stat-item">
+          <span class="stat-icon">📍</span>
+          <div><div class="stat-label">Location</div><div class="stat-value">Pakistan</div></div>
+        </div>
+        <div class="stat-item">
+          <span class="stat-icon">🎯</span>
+          <div><div class="stat-label">Goal</div><div class="stat-value">Targeted Cancer Therapy</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESEARCH INTERESTS -->
+<section id="interests">
+  <div class="container">
+    <div class="section-label fade-up">Areas of Focus</div>
+    <h2 class="section-title fade-up">Research Interests</h2>
+    <div class="section-divider fade-up"></div>
+    <div class="interests-grid">
+      <div class="interest-card fade-up"><div class="interest-icon">💊</div><h3>Liposomal Drug Delivery Systems</h3></div>
+      <div class="interest-card fade-up"><div class="interest-icon">⚗️</div><h3>Pharmaceutical Formulation</h3></div>
+      <div class="interest-card fade-up"><div class="interest-icon">🔬</div><h3>Nanomedicine</h3></div>
+      <div class="interest-card fade-up"><div class="interest-icon">🌿</div><h3>Natural Phospholipids</h3></div>
+      <div class="interest-card fade-up"><div class="interest-icon">🌱</div><h3>Phytochemical-Based Drug Delivery</h3></div>
+      <div class="interest-card fade-up"><div class="interest-icon">🎯</div><h3>Targeted Cancer Therapy</h3></div>
+      <div class="interest-card fade-up"><div class="interest-icon">🚀</div><h3>Drug Delivery Technologies</h3></div>
+      <div class="interest-card fade-up"><div class="interest-icon">🧬</div><h3>Biochemistry</h3></div>
+      <div class="interest-card fade-up"><div class="interest-icon">📊</div><h3>Analytical Chemistry</h3></div>
+      <div class="interest-card fade-up"><div class="interest-icon">🏥</div><h3>Biomedical Research</h3></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <div class="section-label fade-up">Featured Work</div>
+    <h2 class="section-title fade-up">Research Projects</h2>
+    <div class="section-divider fade-up"></div>
+    <div class="projects-grid">
+      <div class="project-card fade-up">
+        <div class="project-icon">🧪</div>
+        <h3>Sulforaphane Liposomal Formulation Using Natural Phospholipids</h3>
+        <p>Developed a liposomal formulation using naturally derived phospholipids to improve the stability, bioavailability, and targeted delivery of sulforaphane for potential anticancer applications.</p>
+        <div class="project-tags">
+          <span class="tag">Liposome Preparation</span>
+          <span class="tag">Drug Formulation</span>
+          <span class="tag">Natural Phospholipids</span>
+          <span class="tag">Literature Review</span>
+          <span class="tag">FTIR Analysis</span>
+        </div>
+        <a href="#" class="btn-read">Read More →</a>
+      </div>
+      <div class="project-card fade-up">
+        <div class="project-icon">🌿</div>
+        <h3>Extraction and Formulation of Lecithin from Natural Sources</h3>
+        <p>Extracted and purified natural phospholipids using solvent extraction methods for pharmaceutical liposome preparation,analytical characterization and vitro testing and analysis.</p>
+        <div class="project-tags">
+          <span class="tag">Extraction Techniques</span>
+          <span class="tag">Sample Purification</span>
+          <span class="tag">Laboratory Research</span>
+          <span class="tag">Analytical Chemistry</span>
+        </div>
+        <a href="#" class="btn-read">Read More →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LAB SKILLS -->
+<section id="labskills">
+  <div class="container">
+    <div class="section-label fade-up">Experimental Expertise</div>
+    <h2 class="section-title fade-up">Laboratory Skills</h2>
+    <div class="section-divider fade-up"></div>
+    <div class="skills-grid">
+      <div class="skill-card fade-up"><div class="s-icon">🔬</div><h4>Liposome Preparation</h4></div>
+      <div class="skill-card fade-up"><div class="s-icon">📡</div><h4>FTIR Spectroscopy</h4></div>
+      <div class="skill-card fade-up"><div class="s-icon">🌿</div><h4>Lecithin Extraction</h4></div>
+      <div class="skill-card fade-up"><div class="s-icon">⚗️</div><h4>Solvent Extraction Techniques</h4></div>
+      <div class="skill-card fade-up"><div class="s-icon">💊</div><h4>Pharmaceutical Formulation</h4></div>
+      <div class="skill-card fade-up"><div class="s-icon">🧫</div><h4>Sample Preparation</h4></div>
+      <div class="skill-card fade-up"><div class="s-icon">📚</div><h4>Scientific Literature Review</h4></div>
+      <div class="skill-card fade-up"><div class="s-icon">✍️</div><h4>Scientific Writing</h4></div>
+      <div class="skill-card fade-up"><div class="s-icon">🔭</div><h4>Experimental Design</h4></div>
+      <div class="skill-card fade-up"><div class="s-icon">📋</div><h4>UV spectroscopy</h4></div>
+      <div class="skill-card fade-up"><div class="s-icon">📋</div><h4>Laboratory Documentation</h4></div>
+      <div class="skill-card fade-up"><div class="s-icon">📋</div><h4>Nanoparticle formulation</h4></div>
+    </div>
+  </div>
+</section>
+
+<!-- TECH SKILLS -->
+<section id="techskills">
+  <div class="container">
+    <div class="section-label fade-up">Tools & Proficiency</div>
+    <h2 class="section-title fade-up">Technical Skills</h2>
+    <div class="section-divider fade-up"></div>
+    <div class="tech-bars fade-up">
+      <div class="bar-item"><label><span>Microsoft Excel</span><span>90%</span></label><div class="bar-track"><div class="bar-fill" data-w="90"></div></div></div>
+      <div class="bar-item"><label><span>Microsoft Word</span><span>95%</span></label><div class="bar-track"><div class="bar-fill" data-w="95"></div></div></div>
+      <div class="bar-item"><label><span>Microsoft PowerPoint</span><span>88%</span></label><div class="bar-track"><div class="bar-fill" data-w="88"></div></div></div>
+      <div class="bar-item"><label><span>Scientific Research</span><span>92%</span></label><div class="bar-track"><div class="bar-fill" data-w="92"></div></div></div>
+      <div class="bar-item"><label><span>Literature Review</span><span>94%</span></label><div class="bar-track"><div class="bar-fill" data-w="94"></div></div></div>
+      <div class="bar-item"><label><span>Research Documentation</span><span>91%</span></label><div class="bar-track"><div class="bar-fill" data-w="91"></div></div></div>
+      <div class="bar-item"><label><span>Scientific Presentations</span><span>87%</span></label><div class="bar-track"><div class="bar-fill" data-w="87"></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="container">
+    <div class="section-label fade-up">Academic Journey</div>
+    <h2 class="section-title fade-up">Education</h2>
+    <div class="section-divider fade-up"></div>
+    <div class="timeline fade-up">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="year">Current · Ongoing</div>
+          <h3>M.Phil. in Biochemistry</h3>
+          <p>Research Candidate focusing on liposomal drug delivery and pharmaceutical nanotechnology using natural phospholipid sources.</p>
+          <ul>
+            <li>Liposomal Drug Delivery</li>
+            <li>Pharmaceutical Formulation</li>
+            <li>Natural Phospholipids</li>
+            <li>Nanomedicine</li>
+          </ul>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="year">Completed</div>
+          <h3>Bachelor of Science in Chemistry</h3>
+          <p>Undergraduate degree with comprehensive training in core chemistry disciplines and laboratory research methodologies.</p>
+          <ul>
+            <li>Organic Chemistry</li>
+            <li>Analytical Chemistry</li>
+            <li>Inorganic Chemistry</li>
+            <li>Pharmaceutical Chemistry</li>
+            <li>Laboratory Research</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section id="philosophy">
+  <div class="container">
+    <div class="quote-mark">"</div>
+    <p class="philosophy-quote">Scientific research has the power to transform healthcare. My goal is to develop innovative, sustainable, and effective drug delivery systems using natural materials that contribute to future pharmaceutical advancements.</p>
+    <p class="quote-author">— Tooba Hafeez Khan</p>
+  </div>
+</section>
+
+<!-- COLLABORATE -->
+<section id="collaborate">
+  <div class="container fade-up">
+    <div class="section-label">Open to Opportunities</div>
+    <h2 class="section-title">Hire Me / Collaborate</h2>
+    <div class="section-divider" style="margin:1rem auto 2rem;"></div>
+    <div class="collab-opportunities">
+      <span class="collab-pill">M.Phil. Research</span>
+      <span class="collab-pill">Research Assistant</span>
+      <span class="collab-pill">Pharmaceutical Research</span>
+      <span class="collab-pill">Drug Delivery Systems</span>
+      <span class="collab-pill">Academic Collaborations</span>
+      <span class="collab-pill">Scientific Research Projects</span>
+    </div>
+    <p class="collab-intro">I warmly invite professors, researchers, laboratories, universities, pharmaceutical companies, and biotechnology organizations to explore collaboration opportunities. Whether it's a joint research project, a research assistant role, or a scientific publication, I am eager to contribute innovative, rigorous, and impactful work at the intersection of biochemistry, nanomedicine, and pharmaceutical science.</p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-primary">Collaborate With Me</a>
+      <a href="#" class="btn-outline">Download CV</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-grid fade-up">
+      <div class="contact-info">
+        <div class="section-label">Get in Touch</div>
+        <h2 class="section-title" style="color:#fff">Contact</h2>
+        <div class="section-divider"></div>
+        <div class="contact-links">
+          <a href="toobahafeez13@gmail.com" class="contact-link"><span class="c-icon">✉️</span><span>your@email.com</span></a>
+          <a href="https://www.linkedin.com/in/tooba-hafeez-771900412/" class="contact-link" target="_blank"><span class="c-icon">💼</span><span>linkedin.com/in/yourprofile</span></a>
+          <a href="https://github.com/toobahafeez910" class="contact-link" target="_blank"><span class="c-icon">🐙</span><span>github.com/yourhandle</span></a>
+          <a href="#" class="contact-link"><span class="c-icon">📍</span><span>Pakistan</span></a>
+        </div>
+      </div>
+      <form class="contact-form fade-up" onsubmit="return false;">
+        <input type="text" placeholder="Your Name" />
+        <input type="email" placeholder="Your Email" />
+        <input type="text" placeholder="Subject" />
+        <textarea placeholder="Your Message"></textarea>
+        <button type="submit" class="btn-primary" style="border:none;cursor:pointer;">Send Message</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p><strong>© 2026 Tooba Hafeez Khan</strong></p>
+  <p style="margin-top:0.4rem;">M.Phil. Biochemistry | Chemist | Pharmaceutical Research Enthusiast</p>
+  <p style="margin-top:0.4rem;font-style:italic;">"Advancing science through research, innovation, and curiosity."</p>
+</footer>
+
+<script>
+// ===== CANVAS: DNA Helix + Floating Molecules =====
+const canvas = document.getElementById('canvas-bg');
+const ctx = canvas.getContext('2d');
+let W, H;
+function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+resize(); window.addEventListener('resize', resize);
+
+const particles = Array.from({length:60},()=>({ x:Math.random()*2000, y:Math.random()*1000, r:Math.random()*3+1, dx:(Math.random()-0.5)*0.5, dy:(Math.random()-0.5)*0.5, a:Math.random() }));
+let t = 0;
+function drawDNA() {
+  const cx = W*0.72, baseY = H/2, amp = 80, freq = 0.025;
+  ctx.lineWidth = 2.5;
+  for(let s=0;s<2;s++) {
+    ctx.beginPath();
+    for(let i=0;i<H;i+=2) {
+      const x = cx + amp * Math.sin(freq*i + t + s*Math.PI);
+      if(i===0) ctx.moveTo(x,i); else ctx.lineTo(x,i);
+    }
+    ctx.strokeStyle = s===0 ? 'rgba(0,212,255,0.35)' : 'rgba(0,120,220,0.3)';
+    ctx.stroke();
+  }
+  for(let i=40;i<H;i+=40) {
+    const x1 = cx + amp * Math.sin(freq*i + t);
+    const x2 = cx + amp * Math.sin(freq*i + t + Math.PI);
+    ctx.beginPath(); ctx.moveTo(x1,i); ctx.lineTo(x2,i);
+    ctx.strokeStyle = 'rgba(0,212,255,0.18)'; ctx.lineWidth=1.5; ctx.stroke();
+    ctx.beginPath(); ctx.arc(x1,i,4,0,Math.PI*2);
+    ctx.fillStyle='rgba(0,212,255,0.6)'; ctx.fill();
+    ctx.beginPath(); ctx.arc(x2,i,4,0,Math.PI*2);
+    ctx.fillStyle='rgba(0,120,220,0.6)'; ctx.fill();
+  }
+}
+function animate() {
+  ctx.clearRect(0,0,W,H);
+  t += 0.012;
+  particles.forEach(p=>{
+    p.x+=p.dx; p.y+=p.dy;
+    if(p.x<0||p.x>W) p.dx*=-1;
+    if(p.y<0||p.y>H) p.dy*=-1;
+    ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctx.fillStyle=`rgba(0,212,255,${0.1+p.a*0.2})`; ctx.fill();
+  });
+  drawDNA();
+  requestAnimationFrame(animate);
+}
+animate();
+
+// ===== SCROLL FADE =====
+const obs = new IntersectionObserver(es=>{
+  es.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); });
+},{threshold:0.15});
+document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
+
+// ===== SKILL BARS =====
+const barObs = new IntersectionObserver(es=>{
+  es.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.querySelectorAll('.bar-fill').forEach(b=>{
+        b.style.width = b.dataset.w + '%';
+      });
+    }
+  });
+},{threshold:0.3});
+const techSection = document.getElementById('techskills');
+if(techSection) barObs.observe(techSection);
+</script>
+</body>
+</html>
